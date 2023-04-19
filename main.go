@@ -2,12 +2,11 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
+"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"time"
-
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/dghubble/go-twitter/twitter"
 	"github.com/dghubble/oauth1"
@@ -25,14 +24,13 @@ func Handler(){
 
 	if(err != nil){
 		fmt.Println("something went wrong with fetching the weather")
-	}
+  }
 
 	payload := createTweet(weatherStruct)
 
-
 	config := oauth1.NewConfig(os.Getenv("consumerKey"), os.Getenv("consumerKeySecret"))
-
 	token := oauth1.NewToken(os.Getenv("accessToken"), os.Getenv("accessTokenSecret"))
+
 	// http.Client will automatically authorize Requests
 	httpClient := config.Client(oauth1.NoContext, token)
 
@@ -82,7 +80,7 @@ func canWePlayFootball(temp int, desc string) string {
 		if(idx == -1){
 			return "Ja, maar wel wat fris"
 		}else {
-			return "Nee, het is houd & kans op neerslag"
+			return "Nee, het is koud & kans op neerslag"
 		}
 	}
 }
